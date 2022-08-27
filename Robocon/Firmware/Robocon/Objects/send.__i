@@ -1,0 +1,1 @@
+"send.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\annex) DEBUG OBJECTEXTEND PRINT(.\Listings\send.lst) OBJECT(.\Objects\send.obj)

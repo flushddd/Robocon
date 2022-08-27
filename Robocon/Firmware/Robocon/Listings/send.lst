@@ -1,0 +1,59 @@
+C51 COMPILER V9.54   SEND                                                                  08/27/2022 14:44:30 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SEND
+OBJECT MODULE PLACED IN .\Objects\send.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE send.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\annex) DEBUG OBJECTEXTEND PRINT
+                    -(.\Listings\send.lst) OBJECT(.\Objects\send.obj)
+
+line level    source
+
+   1          
+   2          #include <REGX52.H>
+   3          #include "IIC.h"
+   4          
+   5          #define Address 0x0A
+   6          
+   7          
+   8          unsigned char  WAddress =1;
+   9          unsigned char *sendstring="HelloRobocon!";
+  10          
+  11          void SendByte(unsigned char WAddress, unsigned char Data)
+  12          {
+  13   1              iic_start();
+  14   1              iic_write_byte(Address);
+  15   1              iic_wait_ack();
+  16   1              iic_write_byte(WAddress);//存放数据的地址
+  17   1              iic_wait_ack();
+  18   1              iic_write_byte(Data);
+  19   1          iic_wait_ack();
+  20   1              iic_stop();
+  21   1      }
+  22          
+  23          void send()
+  24          {
+  25   1              
+  26   1              while(*sendstring)
+  27   1      {
+  28   2      
+  29   2      
+  30   2      SendByte(WAddress,*sendstring);
+  31   2      WAddress++;
+  32   2      sendstring++;
+  33   2      }       
+  34   1              
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     73    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
